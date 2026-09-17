@@ -216,6 +216,11 @@ namespace PingUyari
         [STAThread]
         public static void Main()
         {
+            try
+            {
+                System.Net.ServicePointManager.SecurityProtocol = (System.Net.SecurityProtocolType)3072 | System.Net.SecurityProtocolType.Tls12 | System.Net.SecurityProtocolType.Tls11 | System.Net.SecurityProtocolType.Tls;
+            }
+            catch {}
             Application.ThreadException += new ThreadExceptionEventHandler(Application_ThreadException);
             AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
             Application.EnableVisualStyles();
@@ -2853,20 +2858,78 @@ namespace PingUyari
             catch { }
         }
 
+        private string NormalizeUpdateUrl(string rawUrl)
+        {
+            if (string.IsNullOrWhiteSpace(rawUrl)) return rawUrl;
+            string url = rawUrl.Trim();
+
+            if (url.StartsWith("http://", StringComparison.OrdinalIgnoreCase) || url.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
+            {
+                if (url.Contains("github.com"))
+                {
+                    string path = url;
+                    int ghIdx = path.IndexOf("github.com/", StringComparison.OrdinalIgnoreCase);
+                    if (ghIdx >= 0)
+                    {
+                        path = path.Substring(ghIdx + "github.com/".Length).TrimEnd('/');
+                    }
+
+                    if (path.EndsWith(".git", StringComparison.OrdinalIgnoreCase))
+                    {
+                        path = path.Substring(0, path.Length - 4);
+                    }
+
+                    if (path.Contains("/blob/"))
+                    {
+                        return "https://raw.githubusercontent.com/" + path.Replace("/blob/", "/");
+                    }
+                    else if (path.Contains("/raw/"))
+                    {
+                        return "https://raw.githubusercontent.com/" + path.Replace("/raw/", "/");
+                    }
+                    else
+                    {
+                        string[] parts = path.Split(new[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
+                        if (parts.Length == 2)
+                        {
+                            return string.Format("https://raw.githubusercontent.com/{0}/{1}/main/version.txt", parts[0], parts[1]);
+                        }
+                        else if (parts.Length > 2 && !path.EndsWith(".txt", StringComparison.OrdinalIgnoreCase) && !path.EndsWith(".exe", StringComparison.OrdinalIgnoreCase))
+                        {
+                            return string.Format("https://raw.githubusercontent.com/{0}/main/version.txt", path);
+                        }
+                        else
+                        {
+                            return "https://raw.githubusercontent.com/" + path;
+                        }
+                    }
+                }
+            }
+            return url;
+        }
+
         private async Task CheckForUpdatesAsync(bool isManualCheck)
         {
-            string sourceUrl = updateSettings.UpdateSourceUrl;
-            if (string.IsNullOrWhiteSpace(sourceUrl))
+            try
+            {
+                System.Net.ServicePointManager.SecurityProtocol = (System.Net.SecurityProtocolType)3072 | System.Net.SecurityProtocolType.Tls12 | System.Net.SecurityProtocolType.Tls11 | System.Net.SecurityProtocolType.Tls;
+            }
+            catch {}
+
+            string rawUrl = updateSettings.UpdateSourceUrl;
+            if (string.IsNullOrWhiteSpace(rawUrl))
             {
                 if (isManualCheck)
                 {
                     this.BeginInvoke(new Action(delegate()
                     {
-                        MessageBox.Show("Lütfen önce Oto-Güncelleme ayarlarından bir Güncelleme Adresi veya Ağ Yolu tanımlayın.\n\nÖrnek Web URL: http://sunucu/update/version.txt\nÖrnek Ağ Yolu: \\\\Sunucu\\Ortak\\version.txt", "Güncelleme Adresi Yok", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("Lütfen önce Oto-Güncelleme ayarlarından bir Güncelleme Adresi veya Ağ Yolu tanımlayın.\n\nÖrnek GitHub Repo: https://github.com/suqer34/ping-uyari\nÖrnek Web URL: https://raw.githubusercontent.com/suqer34/ping-uyari/main/version.txt", "Güncelleme Adresi Yok", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }));
                 }
                 return;
             }
+
+            string sourceUrl = NormalizeUpdateUrl(rawUrl);
 
             try
             {
@@ -2933,7 +2996,7 @@ namespace PingUyari
                         notes.AppendLine(lines[i]);
                     }
 
-                    if (string.IsNullOrEmpty(downloadUrl))
+                    if (string.IsNullOrEmpty(downloadUrl) || downloadUrl.Equals("PingUyari.exe", StringComparison.OrdinalIgnoreCase))
                     {
                         if (sourceUrl.StartsWith("http://", StringComparison.OrdinalIgnoreCase) || sourceUrl.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
                         {
@@ -2946,6 +3009,21 @@ namespace PingUyari
                             downloadUrl = Path.Combine(dir, "PingUyari.exe");
                         }
                     }
+                    else if (!downloadUrl.StartsWith("http://", StringComparison.OrdinalIgnoreCase) && !downloadUrl.StartsWith("https://", StringComparison.OrdinalIgnoreCase) && !File.Exists(downloadUrl))
+                    {
+                        if (sourceUrl.StartsWith("http://", StringComparison.OrdinalIgnoreCase) || sourceUrl.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
+                        {
+                            int lastSlash = sourceUrl.LastIndexOf('/');
+                            downloadUrl = sourceUrl.Substring(0, lastSlash + 1) + downloadUrl;
+                        }
+                        else
+                        {
+                            string dir = Path.GetDirectoryName(sourceUrl);
+                            downloadUrl = Path.Combine(dir, downloadUrl);
+                        }
+                    }
+
+                    downloadUrl = NormalizeUpdateUrl(downloadUrl);
 
                     LogMessage(string.Format("🚀 YENİ SÜRÜM BULUNDU: v{0} (Mevcut: v{1})", latestVersionStr, APP_VERSION), Color.LightGreen);
 
@@ -2974,7 +3052,7 @@ namespace PingUyari
                     {
                         string tempExePath = Path.Combine(Application.StartupPath, "PingUyari_new.exe");
 
-                        LogMessage("📥 Yeni sürüm indiriliyor...", accentBlue);
+                        LogMessage("📥 Yeni sürüm indiriliyor: " + downloadUrl, accentBlue);
 
                         if (downloadUrl.StartsWith("http://", StringComparison.OrdinalIgnoreCase) || downloadUrl.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
                         {
