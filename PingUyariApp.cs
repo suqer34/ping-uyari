@@ -1185,7 +1185,11 @@ namespace PingUyari
             {
                 Dock = DockStyle.Fill,
                 Orientation = Orientation.Vertical,
-                SplitterDistance = 220,
+                FixedPanel = FixedPanel.Panel1,
+                SplitterDistance = 240,
+                Panel1MinSize = 180,
+                Panel2MinSize = 400,
+                SplitterWidth = 5,
                 Margin = new Padding(0),
                 BackColor = bgDark
             };
