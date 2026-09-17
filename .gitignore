@@ -1,9 +1,14 @@
-# Local logs and temporary files
+# Local user settings and data (MUST NOT be pushed to GitHub)
+targets.txt
+targets_imported.txt
+email_settings.txt
+telegram_settings.txt
+update_settings.txt
+kesinti_gecmisi.csv
 *.log
 *.csv
-update_settings.txt
-targets_imported.txt
 Update_Server/
 PingUyari_v6.1.0_OldTest.exe
 PingUyari_new.exe
 updater.bat
+AnyDesk.exe
