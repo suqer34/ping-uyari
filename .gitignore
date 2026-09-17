@@ -1,0 +1,9 @@
+# Local logs and temporary files
+*.log
+*.csv
+update_settings.txt
+targets_imported.txt
+Update_Server/
+PingUyari_v6.1.0_OldTest.exe
+PingUyari_new.exe
+updater.bat

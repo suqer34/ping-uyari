@@ -1,0 +1,6 @@
+6.2.0
+https://raw.githubusercontent.com/suqer34/ping-uyari/main/PingUyari.exe
+- [v6.2.0] GitHub üzerinden canlı otomatik güncelleme (Auto-Updater) desteği eklendi.
+- Hosta özel Ping aralığı, Timeout ve Kesinti eşiği ayarları eklendi.
+- Çoklu seçim (Multi-Select) ve Toplu Ayar Düzenleme (Batch Edit) desteği eklendi.
+- Sesli anons bildirimleri kaldırıldı, performans optimize edildi.

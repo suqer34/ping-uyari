@@ -1,0 +1,519 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <NetProject version="3">
+    <Group id="8" xpos="528" ypos="292" name="Internet Sensors" descr="Checking Internet services" groupType="1">
+      <Device id="20" xpos="138" ypos="10" cnnCount="0" devType="57" name="Google.com" autoResolve="-1" hostname="www.google.com" ipAddress="142.251.157.119" descr="Popular search engine">
+        <Monitor id="21" name="Ping" type="ICMP" interval="60" timeout="300" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+          <Action enabled="true" type="3" name="Show tray message [1]" green="false" red="true" black="false" after="1" repeatedly="0" onstartup="0">
+            <message>Monitor %MONITOR_NAME% @ %DEVICE_NAME% [%IP_ADDRESS%:%PORT%] changed color to %MONITOR_COLOR%. Result: &quot;%RESULT%&quot; [%TIME_STAMP%]</message>
+            <timeout>10</timeout>
+          </Action>
+        </Monitor>
+      </Device>
+      <Device id="303" xpos="14" ypos="4" cnnCount="0" devType="57" name="Alnusyatirim.com" autoResolve="-1" hostname="alnusyatirim.com" ipAddress="10.34.12.49" descr="alnusyatirim.com">
+        <Monitor id="304" name="Ping" type="ICMP" interval="180" timeout="100" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+          <Action enabled="true" type="4" name="Play sound [1]" green="false" red="true" black="false" after="1" repeatedly="0" onstartup="0">
+            <sound>C:\Total Network Mon\emergency-alarm.wav</sound>
+          </Action>
+        </Monitor>
+        <Monitor id="305" name="HTTPS" type="TCP" interval="180" timeout="1" state="1">
+          <Probe request="" serverPort="80"/>
+          <Action enabled="true" type="4" name="Down" green="false" red="true" black="false" after="1" repeatedly="0" onstartup="1">
+            <sound>C:\Total Network Mon\emergency-alarm.wav</sound>
+          </Action>
+        </Monitor>
+      </Device>
+      <Device id="307" xpos="414" ypos="4" cnnCount="0" devType="57" name="DNS.Google" autoResolve="0" hostname="dns.google" ipAddress="8.8.8.8" descr="DNS.Google">
+        <Monitor id="308" name="Ping" type="ICMP" interval="180" timeout="10" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+          <Action enabled="true" type="4" name="Down" green="false" red="true" black="false" after="1" repeatedly="0" onstartup="0">
+            <sound>C:\Total Network Mon\emergency-alarm.wav</sound>
+          </Action>
+        </Monitor>
+      </Device>
+      <Device id="309" xpos="894" ypos="4" cnnCount="0" devType="57" name="DNS39.turktelekom.com.tr" autoResolve="0" hostname="dns39.turktelekom.com.tr" ipAddress="195.175.39.39" descr="DNS39.turktelekom.com.tr">
+        <Monitor id="310" name="Ping" type="ICMP" interval="180" timeout="100" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+          <Action enabled="true" type="4" name="Down" green="false" red="true" black="false" after="1" repeatedly="0" onstartup="0">
+            <sound>C:\Total Network Mon\emergency-alarm.wav</sound>
+          </Action>
+        </Monitor>
+      </Device>
+    </Group>
+    <Group id="100" xpos="71" ypos="202" name="Windows and File Sensors" descr="Local and remote sensors check" groupType="1">
+      <Device id="101" xpos="14" ypos="4" cnnCount="1" devType="50" name="My computer" autoResolve="0" hostname="My computer" ipAddress="10.34.11.211" descr="PC">
+        <Monitor id="102" name="ICMP ping" type="ICMP" interval="60" timeout="400" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+        <Monitor id="105" name="Physical memory usage less than 90%" type="PERFORMANCE" interval="900" timeout="1" state="1">
+          <Probe index="1" rule="more" status="down" user="" value="90" what="physical" x_passwd=""/>
+        </Monitor>
+        <Monitor id="106" name="Check for 2 users in the System" type="PERFORMANCE" interval="28800" timeout="1" state="1">
+          <Probe index="4" rule="more" status="down" user="" value="10" what="user" x_passwd=""/>
+        </Monitor>
+        <Monitor id="107" name="Check for AlternateShell in SafeMode" type="REGSTATE" interval="28800" timeout="1" state="1">
+          <Probe field="AlternateShell" key="HKEY_LOCAL_MACHINE" rule="exist" status="up" subkey="SYSTEM\CurrentControlSet\Control\SafeBoot" user="" value="cmd.exe" x_passwd=""/>
+        </Monitor>
+        <Monitor id="108" name="Existence of the &quot;explorer.exe&quot; file" type="FILEEXIST" interval="28800" timeout="1" state="1">
+          <Probe name="C$\Windows\explorer.exe" status="up" user="" what="exist" x_passwd=""/>
+        </Monitor>
+        <Monitor id="109" name="Disk space usage less than 70%" type="DISKSPACE" interval="3600" timeout="1" state="1">
+          <Probe name="C$" size="percent" status="down" user="" value="60" what="less" x_passwd=""/>
+        </Monitor>
+      </Device>
+      <Device id="114" xpos="174" ypos="4" cnnCount="1" devType="34" name="My New Device" autoResolve="0" hostname="My New Device" ipAddress="127.255.255.254" descr="Apple device">
+        <Monitor id="115" name="Ping my new device" type="ICMP" interval="60" timeout="100" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+          <Action enabled="true" type="8" name="Write to event log [1]" green="false" red="true" black="false" after="1" repeatedly="1" onstartup="0">
+            <message>Monitor %MONITOR_NAME% @ %DEVICE_NAME% [%IP_ADDRESS%:%PORT%] changed color to %MONITOR_COLOR%. Result: &quot;%RESULT%&quot; [%TIME_STAMP%]</message>
+            <type>warning</type>
+          </Action>
+        </Monitor>
+      </Device>
+    </Group>
+    <Group id="284" xpos="14" ypos="4" name="Network_Merkez_FX" groupType="1">
+      <Device id="502" xpos="14" ypos="4" cnnCount="0" devType="0" name="mt5.alnusyatirim.com" autoResolve="0" hostname="mt5.alnusyatirim.com" ipAddress="10.34.13.40">
+        <Monitor id="503" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="504" xpos="94" ypos="4" cnnCount="0" devType="0" name="MR-VS-MT5LVACC1.alnus.local" autoResolve="0" hostname="MR-VS-MT5LVACC1.alnus.local" ipAddress="10.34.13.41">
+        <Monitor id="505" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="506" xpos="174" ypos="4" cnnCount="0" devType="0" name="mt5demo.alnusyatirim.com" autoResolve="0" hostname="mt5demo.alnusyatirim.com" ipAddress="10.34.13.43">
+        <Monitor id="507" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="508" xpos="254" ypos="4" cnnCount="0" devType="0" name="MR-VS-MT5DMACC1.alnus.local" autoResolve="0" hostname="MR-VS-MT5DMACC1.alnus.local" ipAddress="10.34.13.44">
+        <Monitor id="509" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="510" xpos="334" ypos="4" cnnCount="0" devType="0" name="test5.alnusyatirim.com" autoResolve="0" hostname="test5.alnusyatirim.com" ipAddress="10.34.13.45">
+        <Monitor id="511" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+    </Group>
+    <Group id="312" xpos="174" ypos="4" name="Subeler - Statik" descr="Alnus - &#xDE;ubeler" groupType="1">
+      <Device id="313" xpos="14" ypos="4" cnnCount="0" devType="0" name="&#xC7;ankaya &#xDE;ube Statik " autoResolve="-1" hostname="212.156.70.190" ipAddress="212.156.70.190" descr="&#xC7;ankaya TT Statik">
+        <Monitor id="316" name="&#xC7;ankaya &#xDE;ube Statik" type="ICMP" interval="40" timeout="35" state="1">
+          <Probe packetSize="32" retryCount="4" ttl="64"/>
+          <Action enabled="true" type="4" name="Play sound [1]" green="false" red="true" black="false" after="1" repeatedly="0" onstartup="0">
+            <sound>C:\Total Network Mon\emergency-alarm.wav</sound>
+          </Action>
+        </Monitor>
+      </Device>
+      <Device id="315" xpos="174" ypos="4" cnnCount="0" devType="0" name="Adana &#xDE;ube Statik" autoResolve="0" hostname="host-195-142-160-58.reverse.superonline.net" ipAddress="195.142.160.58" descr="Adana &#xDE;ube Statik">
+        <Monitor id="318" name="Adana &#xDE;ube Statik" type="ICMP" interval="30" timeout="25" state="1">
+          <Probe packetSize="32" retryCount="4" ttl="64"/>
+          <Action enabled="true" type="4" name="Play sound [1]" green="false" red="true" black="false" after="1" repeatedly="0" onstartup="0">
+            <sound>C:\Total Network Mon\emergency-alarm.wav</sound>
+          </Action>
+        </Monitor>
+      </Device>
+      <Device id="319" xpos="254" ypos="4" cnnCount="0" devType="0" name="&#xC7;ukurambar Statik" autoResolve="0" hostname="81.214.141.170.dynamic.ttnet.com.tr" ipAddress="81.214.141.170">
+        <Monitor id="320" name="&#xC7;ukurambar Statik" type="ICMP" interval="30" timeout="25" state="1">
+          <Probe packetSize="32" retryCount="4" ttl="64"/>
+          <Action enabled="true" type="4" name="Play sound [1]" green="false" red="true" black="false" after="1" repeatedly="0" onstartup="0">
+            <sound>C:\Total Network Mon\emergency-alarm.wav</sound>
+          </Action>
+        </Monitor>
+      </Device>
+      <Device id="325" xpos="494" ypos="4" cnnCount="0" devType="0" name="Antalya Statik" autoResolve="0" hostname="78.189.43.166.static.ttnet.com.tr" ipAddress="78.186.43.166" descr="Antalya Statik">
+        <Monitor id="326" name="Antalya Statik" type="ICMP" interval="30" timeout="25" state="1">
+          <Probe packetSize="32" retryCount="4" ttl="64"/>
+          <Action enabled="true" type="4" name="Play sound [1]" green="false" red="true" black="false" after="1" repeatedly="0" onstartup="0">
+            <sound>C:\Total Network Mon\emergency-alarm.wav</sound>
+          </Action>
+        </Monitor>
+      </Device>
+      <Device id="335" xpos="894" ypos="4" cnnCount="0" devType="0" name="Alsancak Statik" autoResolve="0" hostname="host-213-74-58-146.superonline.net" ipAddress="213.74.58.146" descr="Alsancak Statik">
+        <Monitor id="336" name="Alsancak Statik" type="ICMP" interval="30" timeout="25" state="1">
+          <Probe packetSize="32" retryCount="4" ttl="64"/>
+          <Action enabled="true" type="4" name="Play sound [1]" green="false" red="true" black="false" after="1" repeatedly="0" onstartup="0">
+            <sound>C:\Total Network Mon\emergency-alarm.wav</sound>
+          </Action>
+        </Monitor>
+      </Device>
+      <Device id="337" xpos="974" ypos="4" cnnCount="0" devType="0" name="&#xDD;zmit Statik" autoResolve="0" hostname="95.3.22.110.dynamic.ttnet.com.tr" ipAddress="95.3.22.110" descr="&#xDD;zmit Statik">
+        <Monitor id="338" name="&#xDD;zmit Statik" type="ICMP" interval="30" timeout="25" state="1">
+          <Probe packetSize="32" retryCount="4" ttl="64"/>
+          <Action enabled="true" type="4" name="Play sound [1]" green="false" red="true" black="false" after="1" repeatedly="0" onstartup="0">
+            <sound>C:\Total Network Mon\emergency-alarm.wav</sound>
+          </Action>
+        </Monitor>
+      </Device>
+    </Group>
+    <Group id="339" xpos="254" ypos="4" name="Subeler - Local" descr="&#xDE;ubeler - Local" groupType="1">
+      <Device id="340" xpos="14" ypos="4" cnnCount="0" devType="0" name="Merkez" autoResolve="0" hostname="10.34.11.254" ipAddress="10.34.11.254" descr="Merkez ">
+        <Monitor id="341" name="Merkez" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+          <Action enabled="true" type="4" name="Play sound [1]" green="false" red="true" black="false" after="1" repeatedly="0" onstartup="0">
+            <sound>C:\Total Network Mon\emergency-alarm.wav</sound>
+          </Action>
+        </Monitor>
+      </Device>
+      <Device id="346" xpos="254" ypos="4" cnnCount="0" devType="0" name="Adana Local" autoResolve="0" hostname="10.1.0.254" ipAddress="10.1.0.254" descr="Adana Local"/>
+      <Device id="348" xpos="334" ypos="4" cnnCount="0" devType="0" name="&#xDD;zmit Local" autoResolve="0" hostname="10.41.34.254" ipAddress="10.41.34.254" descr="&#xDD;zmit Local"/>
+      <Device id="354" xpos="574" ypos="4" cnnCount="0" devType="0" name="&#xC7;ankaya Local" autoResolve="0" hostname="10.7.0.254" ipAddress="10.7.0.254" descr="&#xC7;ankaya Local"/>
+      <Device id="356" xpos="654" ypos="4" cnnCount="0" devType="0" name="Alsancak Local" autoResolve="0" hostname="10.35.10.254" ipAddress="10.35.10.254" descr="Alsancak Local"/>
+      <Device id="358" xpos="734" ypos="4" cnnCount="0" devType="0" name="Antalya Local" autoResolve="0" hostname="10.7.10.254" ipAddress="10.7.10.254" descr="Antalya Local"/>
+      <Device id="360" xpos="814" ypos="4" cnnCount="0" devType="0" name="&#xC7;ukurambar Local" autoResolve="0" hostname="10.6.2.254" ipAddress="10.6.2.254" descr="&#xC7;ukurambar Local"/>
+    </Group>
+    <Group id="512" xpos="94" ypos="4" name="Network_Merkez_Server" groupType="1">
+      <Device id="513" xpos="14" ypos="4" cnnCount="0" devType="0" name="MR-VS-DC01.alnus.local" autoResolve="0" hostname="MR-VS-DC01.alnus.local" ipAddress="10.34.12.2">
+        <Monitor id="514" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="515" xpos="94" ypos="4" cnnCount="0" devType="0" name="MR-VS-DC02.alnus.local" autoResolve="0" hostname="MR-VS-DC02.alnus.local" ipAddress="10.34.12.3">
+        <Monitor id="516" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="517" xpos="174" ypos="4" cnnCount="0" devType="0" name="10.34.12.5" autoResolve="0" hostname="10.34.12.5" ipAddress="10.34.12.5">
+        <Monitor id="518" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="519" xpos="254" ypos="4" cnnCount="0" devType="0" name="autodiscover.alnusyatirim.com" autoResolve="0" hostname="autodiscover.alnusyatirim.com" ipAddress="10.34.12.6">
+        <Monitor id="520" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="521" xpos="334" ypos="4" cnnCount="0" devType="0" name="10.34.12.8" autoResolve="0" hostname="10.34.12.8" ipAddress="10.34.12.8">
+        <Monitor id="522" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="523" xpos="414" ypos="4" cnnCount="0" devType="0" name="alnuslog.alnus.local" autoResolve="0" hostname="alnuslog.alnus.local" ipAddress="10.34.12.9">
+        <Monitor id="524" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="525" xpos="494" ypos="4" cnnCount="0" devType="0" name="ALNUSFILE.alnus.local" autoResolve="0" hostname="ALNUSFILE.alnus.local" ipAddress="10.34.12.10">
+        <Monitor id="526" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="527" xpos="574" ypos="4" cnnCount="0" devType="0" name="vegadeftersrv.alnus.local" autoResolve="0" hostname="vegadeftersrv.alnus.local" ipAddress="10.34.12.13">
+        <Monitor id="528" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="529" xpos="654" ypos="4" cnnCount="0" devType="0" name="clog-odm.alnusyatirim.com" autoResolve="0" hostname="clog-odm.alnusyatirim.com" ipAddress="10.34.12.15">
+        <Monitor id="530" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="531" xpos="734" ypos="4" cnnCount="0" devType="0" name="S19VEEAMONE.alnus.local" autoResolve="0" hostname="S19VEEAMONE.alnus.local" ipAddress="10.34.12.28">
+        <Monitor id="532" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="533" xpos="814" ypos="4" cnnCount="0" devType="0" name="10.34.12.48" autoResolve="0" hostname="10.34.12.48" ipAddress="10.34.12.48">
+        <Monitor id="534" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="535" xpos="894" ypos="4" cnnCount="0" devType="0" name="10.34.12.54" autoResolve="0" hostname="10.34.12.54" ipAddress="10.34.12.54">
+        <Monitor id="536" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="537" xpos="974" ypos="4" cnnCount="0" devType="0" name="MR-VS-DEVELOPER.alnus.local" autoResolve="0" hostname="MR-VS-DEVELOPER.alnus.local" ipAddress="10.34.12.57">
+        <Monitor id="538" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="539" xpos="1054" ypos="4" cnnCount="0" devType="0" name="alnusveeamsrv" autoResolve="0" hostname="alnusveeamsrv" ipAddress="10.34.12.60">
+        <Monitor id="540" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="541" xpos="1134" ypos="4" cnnCount="0" devType="0" name="10.34.12.63" autoResolve="0" hostname="10.34.12.63" ipAddress="10.34.12.63">
+        <Monitor id="542" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="543" xpos="1214" ypos="4" cnnCount="0" devType="0" name="SPARKSRV.alnus.local" autoResolve="0" hostname="SPARKSRV.alnus.local" ipAddress="10.34.12.64">
+        <Monitor id="544" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="545" xpos="1294" ypos="4" cnnCount="0" devType="0" name="S12KPSNVISRV.alnus.local" autoResolve="0" hostname="S12KPSNVISRV.alnus.local" ipAddress="10.34.12.67">
+        <Monitor id="546" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="547" xpos="1374" ypos="4" cnnCount="0" devType="0" name="MR-VS-BANKENTEG.alnus.local" autoResolve="0" hostname="MR-VS-BANKENTEG.alnus.local" ipAddress="10.34.12.68">
+        <Monitor id="548" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="549" xpos="1454" ypos="4" cnnCount="0" devType="0" name="MR-VS-BRIDGE-M.alnus.local" autoResolve="0" hostname="MR-VS-BRIDGE-M.alnus.local" ipAddress="10.34.12.69">
+        <Monitor id="550" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="551" xpos="1534" ypos="4" cnnCount="0" devType="0" name="eyks.alnusyatirim.com" autoResolve="0" hostname="eyks.alnusyatirim.com" ipAddress="10.34.12.70">
+        <Monitor id="552" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="553" xpos="1614" ypos="4" cnnCount="0" devType="0" name="OPT-PRIME.alnus.local" autoResolve="0" hostname="OPT-PRIME.alnus.local" ipAddress="10.34.12.80">
+        <Monitor id="554" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="555" xpos="1694" ypos="4" cnnCount="0" devType="0" name="ENTEG-MATRIKS.alnus.local" autoResolve="0" hostname="ENTEG-MATRIKS.alnus.local" ipAddress="10.34.12.90">
+        <Monitor id="556" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="557" xpos="1774" ypos="4" cnnCount="0" devType="0" name="ENTEG-FOREKS.alnus.local" autoResolve="0" hostname="ENTEG-FOREKS.alnus.local" ipAddress="10.34.12.91">
+        <Monitor id="558" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="559" xpos="1854" ypos="4" cnnCount="0" devType="0" name="ENTEG-FOREKS.alnus.local" autoResolve="0" hostname="ENTEG-FOREKS.alnus.local" ipAddress="10.34.12.92">
+        <Monitor id="560" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="561" xpos="1934" ypos="4" cnnCount="0" devType="0" name="int-a.alnusyatirim.com" autoResolve="0" hostname="int-a.alnusyatirim.com" ipAddress="10.34.12.93">
+        <Monitor id="562" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="563" xpos="14" ypos="94" cnnCount="0" devType="0" name="OPTIMUS-MOBILE.alnus.local" autoResolve="0" hostname="OPTIMUS-MOBILE.alnus.local" ipAddress="10.34.12.94">
+        <Monitor id="564" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="565" xpos="94" ypos="94" cnnCount="0" devType="0" name="MR-VS-BRIDGE-F.alnus.local" autoResolve="0" hostname="MR-VS-BRIDGE-F.alnus.local" ipAddress="10.34.12.95">
+        <Monitor id="566" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="567" xpos="174" ypos="94" cnnCount="0" devType="0" name="MR-VS-BRIDGE-F2.alnus.local" autoResolve="0" hostname="MR-VS-BRIDGE-F2.alnus.local" ipAddress="10.34.12.96">
+        <Monitor id="568" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="569" xpos="254" ypos="94" cnnCount="0" devType="0" name="mr-vs-web-osube.alnus.local" autoResolve="0" hostname="mr-vs-web-osube.alnus.local" ipAddress="10.34.12.99">
+        <Monitor id="570" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="571" xpos="334" ypos="94" cnnCount="0" devType="0" name="10.34.12.100" autoResolve="0" hostname="10.34.12.100" ipAddress="10.34.12.100">
+        <Monitor id="572" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="573" xpos="414" ypos="94" cnnCount="0" devType="0" name="online2.alnusyatirim.com" autoResolve="0" hostname="online2.alnusyatirim.com" ipAddress="10.34.12.101">
+        <Monitor id="574" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="575" xpos="494" ypos="94" cnnCount="0" devType="0" name="opttest-restapi.alnusyatirim.com" autoResolve="0" hostname="opttest-restapi.alnusyatirim.com" ipAddress="10.34.12.102">
+        <Monitor id="576" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="577" xpos="574" ypos="94" cnnCount="0" devType="0" name="OPT-VIOP-FIXAPI.alnus.local" autoResolve="0" hostname="OPT-VIOP-FIXAPI.alnus.local" ipAddress="10.34.12.104">
+        <Monitor id="578" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="579" xpos="654" ypos="94" cnnCount="0" devType="0" name="fixapi-test.alnus.local" autoResolve="0" hostname="fixapi-test.alnus.local" ipAddress="10.34.12.105">
+        <Monitor id="580" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="581" xpos="734" ypos="94" cnnCount="0" devType="0" name="OPT-PP-FIXAPI.alnus.local" autoResolve="0" hostname="OPT-PP-FIXAPI.alnus.local" ipAddress="10.34.12.107">
+        <Monitor id="582" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="583" xpos="814" ypos="94" cnnCount="0" devType="0" name="MR-VS-DEV-SER.alnus.local" autoResolve="0" hostname="MR-VS-DEV-SER.alnus.local" ipAddress="10.34.12.120">
+        <Monitor id="584" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="585" xpos="894" ypos="94" cnnCount="0" devType="0" name="MKK-TEFAS-TAKAS.alnus.local" autoResolve="0" hostname="MKK-TEFAS-TAKAS.alnus.local" ipAddress="10.34.12.121">
+        <Monitor id="586" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="587" xpos="974" ypos="94" cnnCount="0" devType="0" name="MR-VS-VEEAM_REP.alnus.local" autoResolve="0" hostname="MR-VS-VEEAM_REP.alnus.local" ipAddress="10.34.12.128">
+        <Monitor id="588" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="589" xpos="1054" ypos="94" cnnCount="0" devType="0" name="S19VEEAMBACKUP.alnus.local" autoResolve="0" hostname="S19VEEAMBACKUP.alnus.local" ipAddress="10.34.12.129">
+        <Monitor id="590" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="591" xpos="1134" ypos="94" cnnCount="0" devType="0" name="vmcenter.alnus.local" autoResolve="0" hostname="vmcenter.alnus.local" ipAddress="10.34.12.130">
+        <Monitor id="592" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="593" xpos="1214" ypos="94" cnnCount="0" devType="0" name="alnus-node1.alnus.local" autoResolve="0" hostname="alnus-node1.alnus.local" ipAddress="10.34.12.131">
+        <Monitor id="594" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="595" xpos="1294" ypos="94" cnnCount="0" devType="0" name="alnus-node2.alnus.local" autoResolve="0" hostname="alnus-node2.alnus.local" ipAddress="10.34.12.132">
+        <Monitor id="596" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="597" xpos="1374" ypos="94" cnnCount="0" devType="0" name="alnus-node3.alnus.local" autoResolve="0" hostname="alnus-node3.alnus.local" ipAddress="10.34.12.133">
+        <Monitor id="598" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="599" xpos="1454" ypos="94" cnnCount="0" devType="0" name="onlinev3.alnusyatirim.com" autoResolve="0" hostname="onlinev3.alnusyatirim.com" ipAddress="10.34.12.140">
+        <Monitor id="600" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="601" xpos="1534" ypos="94" cnnCount="0" devType="0" name="10.34.12.141" autoResolve="0" hostname="10.34.12.141" ipAddress="10.34.12.141">
+        <Monitor id="602" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="603" xpos="1614" ypos="94" cnnCount="0" devType="0" name="10.34.12.142" autoResolve="0" hostname="10.34.12.142" ipAddress="10.34.12.142">
+        <Monitor id="604" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="605" xpos="1694" ypos="94" cnnCount="0" devType="0" name="10.34.12.143" autoResolve="0" hostname="10.34.12.143" ipAddress="10.34.12.143">
+        <Monitor id="606" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="607" xpos="1774" ypos="94" cnnCount="0" devType="0" name="10.34.12.167" autoResolve="0" hostname="10.34.12.167" ipAddress="10.34.12.167">
+        <Monitor id="608" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="609" xpos="1854" ypos="94" cnnCount="0" devType="0" name="10.34.12.168" autoResolve="0" hostname="10.34.12.168" ipAddress="10.34.12.168">
+        <Monitor id="610" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="611" xpos="1934" ypos="94" cnnCount="0" devType="0" name="RKYC-TEST.alnus.local" autoResolve="0" hostname="RKYC-TEST.alnus.local" ipAddress="10.34.12.169">
+        <Monitor id="612" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="613" xpos="14" ypos="184" cnnCount="0" devType="0" name="10.34.12.180" autoResolve="0" hostname="10.34.12.180" ipAddress="10.34.12.180">
+        <Monitor id="614" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="615" xpos="94" ypos="184" cnnCount="0" devType="0" name="WS-19-CLOG-WEB.alnus.local" autoResolve="0" hostname="WS-19-CLOG-WEB.alnus.local" ipAddress="10.34.12.181">
+        <Monitor id="616" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="617" xpos="174" ypos="184" cnnCount="0" devType="0" name="MR-VS-OPTDB2.alnus.local" autoResolve="0" hostname="MR-VS-OPTDB2.alnus.local" ipAddress="10.34.12.200">
+        <Monitor id="618" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="619" xpos="254" ypos="184" cnnCount="0" devType="0" name="MR-PS-OPTDB1.alnus.local" autoResolve="0" hostname="MR-PS-OPTDB1.alnus.local" ipAddress="10.34.12.201">
+        <Monitor id="620" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="621" xpos="334" ypos="184" cnnCount="0" devType="0" name="10.34.12.202" autoResolve="0" hostname="10.34.12.202" ipAddress="10.34.12.202">
+        <Monitor id="622" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="623" xpos="414" ypos="184" cnnCount="0" devType="0" name="OPTIMUS-DB.alnus.local" autoResolve="0" hostname="OPTIMUS-DB.alnus.local" ipAddress="10.34.12.207"/>
+      <Device id="625" xpos="494" ypos="184" cnnCount="0" devType="0" name="10.34.12.210" autoResolve="0" hostname="10.34.12.210" ipAddress="10.34.12.210">
+        <Monitor id="626" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="627" xpos="574" ypos="184" cnnCount="0" devType="0" name="10.34.12.215" autoResolve="0" hostname="10.34.12.215" ipAddress="10.34.12.215">
+        <Monitor id="628" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="629" xpos="654" ypos="184" cnnCount="0" devType="0" name="10.34.12.218" autoResolve="0" hostname="10.34.12.218" ipAddress="10.34.12.218">
+        <Monitor id="630" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="631" xpos="734" ypos="184" cnnCount="0" devType="0" name="10.34.12.220" autoResolve="0" hostname="10.34.12.220" ipAddress="10.34.12.220">
+        <Monitor id="632" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="633" xpos="814" ypos="184" cnnCount="0" devType="0" name="10.34.12.221" autoResolve="0" hostname="10.34.12.221" ipAddress="10.34.12.221">
+        <Monitor id="634" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="635" xpos="894" ypos="184" cnnCount="0" devType="0" name="10.34.12.223" autoResolve="0" hostname="10.34.12.223" ipAddress="10.34.12.223">
+        <Monitor id="636" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="637" xpos="974" ypos="184" cnnCount="0" devType="0" name="service-doc.alnusyatirim.com" autoResolve="0" hostname="service-doc.alnusyatirim.com" ipAddress="10.34.12.230">
+        <Monitor id="638" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="639" xpos="1054" ypos="184" cnnCount="0" devType="0" name="cloud.alnusyatirim.com" autoResolve="0" hostname="cloud.alnusyatirim.com" ipAddress="10.34.12.241">
+        <Monitor id="640" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="641" xpos="1134" ypos="184" cnnCount="0" devType="0" name="zabbix.alnusyatirim.com" autoResolve="0" hostname="zabbix.alnusyatirim.com" ipAddress="10.34.12.242">
+        <Monitor id="642" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="643" xpos="1214" ypos="184" cnnCount="0" devType="0" name="itsm.alnusyatirim.com" autoResolve="0" hostname="itsm.alnusyatirim.com" ipAddress="10.34.12.243">
+        <Monitor id="644" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="645" xpos="1294" ypos="184" cnnCount="0" devType="0" name="10.34.12.244" autoResolve="0" hostname="10.34.12.244" ipAddress="10.34.12.244">
+        <Monitor id="646" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="647" xpos="1374" ypos="184" cnnCount="0" devType="0" name="MR-DS-MONITOR.alnus.local" autoResolve="0" hostname="MR-DS-MONITOR.alnus.local" ipAddress="10.34.12.249">
+        <Monitor id="648" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="649" xpos="1454" ypos="184" cnnCount="0" devType="0" name="10.34.12.253" autoResolve="0" hostname="10.34.12.253" ipAddress="10.34.12.253">
+        <Monitor id="650" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+      <Device id="651" xpos="1534" ypos="184" cnnCount="0" devType="0" name="10.34.12.254" autoResolve="0" hostname="10.34.12.254" ipAddress="10.34.12.254">
+        <Monitor id="652" name="ICMP" type="ICMP" interval="60" timeout="1" state="1">
+          <Probe packetSize="32" retryCount="2" ttl="64"/>
+        </Monitor>
+      </Device>
+    </Group>
+    <Connections>
+      <Connector devId1="114" devId2="101"/>
+    </Connections>
+  </NetProject>

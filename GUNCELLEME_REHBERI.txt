@@ -1,0 +1,71 @@
+========================================================================
+PING UYARI & SİBER GÜVENLİK MONİTÖRÜ - OTOMATİK GÜNCELLEME REHBERİ
+========================================================================
+
+Bu rehber, programı farklı bilgisayarlara kurduktan sonra tek bir merkezden 
+otomatik olarak güncellenmesini sağlamak için izlenecek adımları açıklar.
+
+------------------------------------------------------------------------
+1. GÜNCELLEME SİSTEMİ NASIL ÇALIŞIR?
+------------------------------------------------------------------------
+- Program başlatıldığında veya menüdeki "🔍 Güncelleme Kontrol Et" butonuna 
+  basıldığında, belirttiğiniz Web Adresi veya Ortak Ağ Yolu üzerindeki 
+  "version.txt" dosyasını okur.
+- Eğer sunucudaki Sürüm Numarası (Örn: 6.2.0) bilgisayardaki sürümden (Örn: 6.1.0) 
+  büyükse, yeni `PingUyari.exe` dosyasını otomatik indirir.
+- Arka planda `updater.bat` betiği çalışarak eski exe'yi yeni exe ile değiştirir 
+  ve programı yeniden başlatır.
+- KESİNLİKLE KORUNAN DOSYALAR:
+  * targets.txt (Hedef IP ve grup listeniz)
+  * email_settings.txt (E-Posta & SMTP ayarlarınız)
+  * telegram_settings.txt (Telegram bot ayarlarınız)
+  * kesinti_gecmisi.csv (Kesinti ve olay günlükleri)
+  * update_settings.txt (Güncelleme adres ayarları)
+
+------------------------------------------------------------------------
+2. GÜNCELLEME DOSYALARI NASIL YAYINLANIR?
+------------------------------------------------------------------------
+
+YÖNTEM A: Ortak Ağ Klasörü Kullanımı (En Kolay Yöntem)
+-------------------------------------------------------
+1. Şirket içi bir ağ paylaşımına (Örn: \\192.168.1.10\Ortak\PingUyari\ veya Z:\PingUyari\) 
+   iki dosya koyun:
+   - PingUyari.exe (Yeni derlediğiniz executable)
+   - version.txt
+
+2. `version.txt` dosyasının içeriği aşağıdaki formatta olmalıdır:
+   Line 1: Sürüm Numarası (Örn: 6.2.0)
+   Line 2: Yeni Executable Adı veya Tam Yolu (Ortak klasörde aynı yerdeyse boş bırakabilir veya PingUyari.exe yazabilirsiniz)
+   Line 3 ve sonrası: Güncelleme Notları / Yenilikler
+
+   Örnek `version.txt`:
+   6.2.0
+   PingUyari.exe
+   - Performans ve bellek kullanımı iyileştirildi.
+   - Yeni alarm sesleri eklendi.
+
+3. Diğer bilgisayarlardaki programda "🔄 Oto-Güncelleme Ayarları" butonuna basıp 
+   Güncelleme Adresine şunu yazın:
+   \\192.168.1.10\Ortak\PingUyari\version.txt
+
+
+YÖNTEM B: Web Sunucusu Kullanımı (IIS, Apache, Nginx veya GitHub)
+----------------------------------------------------------------
+1. Web sunucunuzdaki bir dizine (Örn: http://192.168.1.50/update/) iki dosyayı yükleyin:
+   - PingUyari.exe
+   - version.txt
+
+2. Örnek `version.txt`:
+   6.2.0
+   http://192.168.1.50/update/PingUyari.exe
+   - Siber güvenlik zafiyet tarama modülü güncellendi.
+   - E-posta bildirim hataları düzeltildi.
+
+3. Bilgisayarlardaki programda "🔄 Oto-Güncelleme Ayarları" alanına şunu girin:
+   http://192.168.1.50/update/version.txt
+
+------------------------------------------------------------------------
+3. KULLANICI BİLGİSAYARLARINDAKİ AYARLAR
+------------------------------------------------------------------------
+- Program açılışında otomatik güncelleme yapılması için "Program açılışında otomatik güncelleme kontrolü yap" tiki açık olmalıdır.
+- Sormadan sessiz güncelleme için "Yeni güncelleme bulunduğunda sormadan otomatik güncelle" seçeneğini aktifleştirebilirsiniz.
